@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Climate Station</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 2rem;
+            background-color: #f3f3f3;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .chart-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        canvas {
+            background: white;
+            border-radius: 10px;
+            padding: 1rem;
+            box-shadow: 0 0 10px #ccc;
+            margin: 1rem;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Climate Station Last Reads🌡️💧</h1>
+    <div class="chart-container">
+        <canvas id="tempChart" width="600" height="300"></canvas>
+        <canvas id="humidChart" width="600" height="300"></canvas>
+    </div>
+
+    <script>
+        fetch('/api/reads')
+            .then(res => res.json())
+            .then(data => {
+                const labels = data.map(d => d.timestamp);
+                const temperatures = data.map(d => d.temperature);
+                const humidities = data.map(d => d.humidity);
+
+                const tempCtx = document.getElementById('tempChart').getContext('2d');
+                new Chart(tempCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Temperature (°C)',
+                            data: temperatures,
+                            borderColor: 'red',
+                            backgroundColor: 'rgba(255,0,0,0.1)',
+                            tension: 0.3,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                ticks: { autoSkip: true, maxTicksLimit: 10 }
+                            }
+                        }
+                    }
+                });
+
+                const humidCtx = document.getElementById('humidChart').getContext('2d');
+                new Chart(humidCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Humidity (%)',
+                            data: humidities,
+                            borderColor: 'blue',
+                            backgroundColor: 'rgba(0,0,255,0.1)',
+                            tension: 0.3,
+                            fill: true
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            x: {
+                                ticks: { autoSkip: true, maxTicksLimit: 10 }
+                            }
+                        }
+                    }
+                });
+            })
+            .catch(err => {
+                console.error("Error loading data:", err);
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+Flask
+python-dotenv
+Adafruit_DHT
+RPi.GPIO
