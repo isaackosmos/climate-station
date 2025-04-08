@@ -88,7 +88,7 @@ Interface simples e responsiva
 │   ├── web.py            # Servidor Flask com rotas e dashboard
 │   ├── database.py       # CRUD SQLite
 │   └── templates/
-│       └── dashboard.html
+│       └── index.html
 ├── requirements.txt      # Dependências para modo simulado
 ├── requirements-rpi.txt  # Dependências para Raspberry Pi
 ├── .env

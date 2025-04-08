@@ -32,7 +32,7 @@ def index():
         "humidity": row[2],
         "timestamp": row[3]
     } for row in rows]
-    return render_template('dashboard.html', data=result)
+    return render_template('index.html', data=result)
 
 
 if __name__ == "__main__":
