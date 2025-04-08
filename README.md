@@ -3,6 +3,8 @@
 Este projeto foi desenvolvido por mim **Isaac Kosmos** como uma aplicação para leitura e visualização de dados climáticos (temperatura e umidade) utilizando um **sensor DHT11** com **Raspberry Pi**, e exibindo os dados em um **dashboard com gráficos interativos** (Chart.js + Flask).
 A coleta de dados é feita a cada 10 segundos, e os dados são armazenados em um banco de dados SQLite. O projeto é ideal para quem deseja aprender sobre automação, IoT e desenvolvimento web.
 
+![image](https://github.com/user-attachments/assets/e725ccf6-0e2f-4bb8-bcb2-10b39f447e9f)
+
 Você pode executar o projeto de duas formas:
 - **Modo Simulado**: gera dados aleatórios para testes em qualquer computador, mesmo que você não tenha um Raspberry PI no momento.
 - **Modo Real (Raspberry Pi)**: lê dados reais do sensor conectado via GPIO.
